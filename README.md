@@ -18,7 +18,7 @@ Este proyecto es una herramienta sencilla para extraer imágenes de un conjunto 
 
 1. Clona este repositorio:
     ```bash
-    git clone https://github.com/tu_usuario/image-extractor.git
+    git clone https://github.com/gustavosis/image-extractor.git
     ```
 2. Navega al directorio del proyecto:
     ```bash
@@ -51,5 +51,5 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENS
 
 ## Contacto
 
-Para cualquier pregunta o sugerencia, por favor contacta a [tu_nombre] a través de [tu_email].
+Para cualquier pregunta o sugerencia, por favor contacta a [Gustavo Arretureta] a través de [gustavo25880521@outllok.com].
 
