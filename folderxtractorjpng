@@ -1,0 +1,51 @@
+import os
+import shutil
+import tkinter as tk
+from tkinter import filedialog
+
+def select_source_folder():
+    folder_selected = filedialog.askdirectory()
+    source_folder_entry.delete(0, tk.END)
+    source_folder_entry.insert(0, folder_selected)
+
+def select_destination_folder():
+    folder_selected = filedialog.askdirectory()
+    destination_folder_entry.delete(0, tk.END)
+    destination_folder_entry.insert(0, folder_selected)
+
+def extract_images():
+    source_folder = source_folder_entry.get()
+    destination_folder = destination_folder_entry.get()
+    new_name = new_name_entry.get()
+    
+    if not os.path.exists(destination_folder):
+        os.makedirs(destination_folder)
+    
+    for root, dirs, files in os.walk(source_folder):
+        for file in files:
+            if file.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp')):
+                source_file = os.path.join(root, file)
+                destination_file = os.path.join(destination_folder, new_name + os.path.splitext(file)[1])
+                shutil.copy2(source_file, destination_file)
+                print(f'Copied {source_file} to {destination_file}')
+
+app = tk.Tk()
+app.title("Image Extractor")
+
+tk.Label(app, text="Source Folder:").grid(row=0, column=0, padx=10, pady=10)
+source_folder_entry = tk.Entry(app, width=50)
+source_folder_entry.grid(row=0, column=1, padx=10, pady=10)
+tk.Button(app, text="Browse", command=select_source_folder).grid(row=0, column=2, padx=10, pady=10)
+
+tk.Label(app, text="Destination Folder:").grid(row=1, column=0, padx=10, pady=10)
+destination_folder_entry = tk.Entry(app, width=50)
+destination_folder_entry.grid(row=1, column=1, padx=10, pady=10)
+tk.Button(app, text="Browse", command=select_destination_folder).grid(row=1, column=2, padx=10, pady=10)
+
+tk.Label(app, text="New File Name:").grid(row=2, column=0, padx=10, pady=10)
+new_name_entry = tk.Entry(app, width=50)
+new_name_entry.grid(row=2, column=1, padx=10, pady=10)
+
+tk.Button(app, text="Extract Images", command=extract_images).grid(row=3, column=1, padx=10, pady=10)
+
+app.mainloop()
